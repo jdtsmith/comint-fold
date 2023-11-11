@@ -6,6 +6,10 @@ It can optionally binding the `Tab` key to fold such blocks (when prior to the p
 
 <img width="449" alt="comint-fold with folded input blocks" src="https://github.com/jdtsmith/comint-fold/assets/93749/c7d768d9-117b-400a-ba79-153bbbf6c48d">
 
+## Using
+
+Use normal `hideshow` commands (like `hs-show-all`), or `Tab`, if `comint-fold-remap-tab` is set.  
+
 ## Install/configure
 
 Not in a package repo.  Simply `package-vc-install` or clone and:
@@ -28,3 +32,7 @@ Some shells add an extra line or more before the prompt, and it can be nice to l
 (add-hook 'some-comint-derived-mode-hook
    (comint-fold-configure-hook num-extra-blanks 'prompt-regexp-var))
 ```
+
+Two additional custom variables control `Tab` rebinding and fringe indicators:
+
+- `comint-fold-remap-tab [t]`: if non-nil, remap the `Tab` key to toggle fold of the enclosing block when point is before the current active prompt position.- `comint-fold-fringe-indicator [top-left-angle]`: an indicator bitmap (symbol) to place in the fringe when folded (if non-nil).
