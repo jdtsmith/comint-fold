@@ -35,4 +35,5 @@ Some shells add an extra line or more before the prompt, and it can be nice to l
 
 Two additional custom variables control `Tab` rebinding and fringe indicators:
 
-- `comint-fold-remap-tab [t]`: if non-nil, remap the `Tab` key to toggle fold of the enclosing block when point is before the current active prompt position.- `comint-fold-fringe-indicator [top-left-angle]`: an indicator bitmap (symbol) to place in the fringe when folded (if non-nil).
+- `comint-fold-remap-tab [t]`: if non-nil, remap the `Tab` key to toggle fold of the enclosing block when point is before the current active prompt position.
+- `comint-fold-fringe-indicator [top-left-angle]`: an indicator bitmap (symbol) to place in the fringe when folded (if non-nil).
