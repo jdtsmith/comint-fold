@@ -4,6 +4,8 @@
 
 It can optionally binding the `Tab` key to fold such blocks (when prior to the prompt), and add a fringe indicator for folded blocks.
 
+<img width="449" alt="comint-fold with folded input blocks" src="https://github.com/jdtsmith/comint-fold/assets/93749/c7d768d9-117b-400a-ba79-153bbbf6c48d">
+
 ## Install/configure
 
 Not in a package repo.  Simply `package-vc-install` or clone and:
@@ -17,8 +19,6 @@ Not in a package repo.  Simply `package-vc-install` or clone and:
   (add-hook 'ipy-mode-hook
             (comint-fold-configure-hook 1 'ipy-prompt-regexp)))
 ```
-
-### Configure
 
 Normally it should *just work* for comint-derived shells.  Prompts are identified using `comint-prompt-regexp`.  Some comint-based modes do not configure this variable.  See `comint-fold-prompt-regexp` for configuring these. 
 
