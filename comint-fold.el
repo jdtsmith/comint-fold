@@ -25,7 +25,7 @@
 ;;; Commentary:
 
 ;; comint-fold configures hideshow mode to fold comint input + output
-;; blocks, optionally binding the Tab key to to fold such blocks prior
+;; blocks, optionally binding the Tab key to fold such blocks prior
 ;; to the prompt, and with a fringe indicator for folded blocks.
 
 ;; Configuration:
