@@ -2,7 +2,7 @@
 
 `comint-fold` is a small Emacs global minor-mode which configures `hideshow` mode in comint buffers to allow *folding* (hiding and unhiding) blocks of input and associated output. 
 
-It can optionally binding the `Tab` key to fold such blocks (when prior to the prompt), and add a fringe indicator for folded blocks.
+It can optionally bind the `Tab` key to fold such blocks (when prior to the prompt), and add a fringe indicator for folded blocks.
 
 <img width="449" alt="comint-fold with folded input blocks" src="https://github.com/jdtsmith/comint-fold/assets/93749/c7d768d9-117b-400a-ba79-153bbbf6c48d">
 
