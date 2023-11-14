@@ -20,7 +20,7 @@ Not in a package repo.  Simply `package-vc-install` or clone and:
   :config
   (comint-fold-mode 1)
   ;; configure some modes specially; try first without this, many "just work"
-  (add-hook 'gud-mode-hook
+  (add-hook 'gdb-mode-hook
             (comint-fold-configure-hook 0 (rx bol "(gdb)" (+ space))))
   (add-hook 'ipy-mode-hook
             (comint-fold-configure-hook 1 'ipy-prompt-regexp)))
