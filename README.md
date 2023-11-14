@@ -19,7 +19,8 @@ Not in a package repo.  Simply `package-vc-install` or clone and:
   :load-path "~/path/to/comint-fold/"
   :config
   (comint-fold-mode 1)
-  ;; configure special modes 
+  ;; configure some modes specially; try first without this, many "just work"
+  (add-hook 'gud-mode-hook (comint-fold-configure-hook 0 (rx bol "(gdb)" (+ space))))
   (add-hook 'ipy-mode-hook
             (comint-fold-configure-hook 1 'ipy-prompt-regexp)))
 ```
