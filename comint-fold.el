@@ -1,4 +1,4 @@
-;;; comint-fold-.el --- Fold comint-input -*- lexical-binding: t; -*-
+;;; comint-fold.el --- Fold comint-input -*- lexical-binding: t; -*-
 ;; Copyright (C) 2023  J.D. Smith
 
 ;; Author: J.D. Smith
@@ -70,8 +70,8 @@ Defaults to the value of `comint-prompt-regexp', if
   :group 'comint-fold)
 
 (defcustom comint-fold-remap-tab "<tab>"
-  "Key binding to fold blocks prior to the current prompt."
-  :type 'string
+  "Key binding to use fold blocks prior to the current prompt."
+  :type '(choice (const :tag "No binding" nil) string)
   :group 'comint-fold)
 
 ;;;; Folding
