@@ -4,7 +4,7 @@
 ;; Author: J.D. Smith
 ;; Homepage: https://github.com/jdtsmith/comint-fold
 ;; Package-Requires: ((emacs "27.1") (compat "29.1.4.3"))
-;; Version: 0.0.1
+;; Version: 0.0.2
 ;; Keywords: convenience
 ;; Prefix: comint-fold
 ;; Separator: -
@@ -69,9 +69,9 @@ Defaults to the value of `comint-prompt-regexp', if
   :type 'symbol
   :group 'comint-fold)
 
-(defcustom comint-fold-remap-tab t
-  "Remap the tab key to fold blocks prior to the current prompt."
-  :type 'boolean
+(defcustom comint-fold-remap-tab "<tab>"
+  "Key binding to fold blocks prior to the current prompt."
+  :type 'string
   :group 'comint-fold)
 
 ;;;; Folding
@@ -142,7 +142,7 @@ This is placed on the `after-change-major-mode-hook'."
 	  (hs-minor-mode 1)
 	  (setq-local hs-hide-comments-when-hiding-all nil)
 	  (when comint-fold-remap-tab
-	    (define-key (current-local-map) (kbd "<tab>")
+	    (define-key (current-local-map) (kbd comint-fold-remap-tab)
 			#'comint-fold-do-fold))
 	  (when comint-fold-fringe-indicator
 	    (setq-local hs-set-up-overlay #'comint-fold-overlay-fringe))
