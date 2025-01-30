@@ -87,7 +87,7 @@ prompts) is not a valid block for folding."
 	   (looking-at-p hs-block-start-regexp)))))
 
 (defun comint-fold-forward-sexp (n)
-  "Move forward to the N'th input past this line."
+  "Move forward to the Nth input past this line."
   (end-of-line)
   (comint-next-prompt n))
 
