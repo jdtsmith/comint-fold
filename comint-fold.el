@@ -69,11 +69,6 @@ Defaults to the value of `comint-prompt-regexp', if
   :type 'symbol
   :group 'comint-fold)
 
-(defcustom comint-fold-remap-tab "<tab>"
-  "Key binding to use fold blocks prior to the current prompt."
-  :type '(choice (const :tag "No binding" nil) string)
-  :group 'comint-fold)
-
 ;;;; Folding
 (defun comint-fold-looking-at-block-p ()
   "Return t if looking at a foldable block.
@@ -110,6 +105,14 @@ Enabled if `comint-fold-fringe-indicator' is non-nil."
 			     (face :foreground
 				   ,(face-background 'highlight))))))
 
+(defvar-local comint-fold--hidden nil)
+(defun comint-fold-toggle-all ()
+  "Toggle hiding/showing all blocks."
+  (interactive)
+  (setq comint-fold--hidden (not comint-fold--hidden))
+  (if comint-fold--hidden (hs-hide-all) (hs-show-all)))
+
+
 ;;;; Setup
 ;;;###autoload
 (defun comint-fold-configure-hook (lines &optional prompt-regexp)
@@ -128,9 +131,15 @@ configuring comint-fold in specific mode hooks, if necessary."
 		      (symbol-value prompt-regexp)
 		    prompt-regexp)))))
 
+(defvar comint-fold-mode-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map (kbd "TAB") #'comint-fold-do-fold)
+    (define-key map (kbd "<backtab>") #'comint-fold-toggle-all) ; why not S-TAB??
+    map)
+  "Basic keymap for `comint-fold-mode'.")
+
 (defun comint-fold-setup ()
-  "Setup folding for the local comint mode.
-This is placed on the `after-change-major-mode-hook'."
+  "Setup folding for the local comint mode."
   (when (derived-mode-p 'comint-mode)
     (if-let ((re (or comint-fold-prompt-regexp comint-prompt-regexp)))
 	(let ((re-end (rx-to-string `(and (= ,(1+ comint-fold-blank-lines) ?\n)
@@ -141,9 +150,6 @@ This is placed on the `after-change-major-mode-hook'."
 		      nil nil nil #'comint-fold-looking-at-block-p))
 	  (hs-minor-mode 1)
 	  (setq-local hs-hide-comments-when-hiding-all nil)
-	  (when comint-fold-remap-tab
-	    (define-key (current-local-map) (kbd comint-fold-remap-tab)
-			#'comint-fold-do-fold))
 	  (when comint-fold-fringe-indicator
 	    (setq-local hs-set-up-overlay #'comint-fold-overlay-fringe))
 	  (hs-grok-mode-type))
@@ -154,14 +160,10 @@ This is placed on the `after-change-major-mode-hook'."
 ;;;###autoload
 (define-minor-mode comint-fold-mode
   "Fold input/output in comint modes."
-  :global t
+  :global nil
+  :keymap comint-fold-mode-map
   :group 'comint-fold
-  (if comint-fold-mode
-      ;; We put this on the after-change-major-mode-hook so normal
-      ;; derived mode hooks (e.g. python-mode) can be used to
-      ;; pre-configure comint-fold variables in advance of setup.
-      (add-hook 'after-change-major-mode-hook #'comint-fold-setup)
-    (remove-hook 'after-change-major-mode-hook #'comint-fold-setup)))
+  (when comint-fold-mode (comint-fold-setup)))
 
 (provide 'comint-fold)
 ;;; comint-fold.el ends here
