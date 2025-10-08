@@ -4,7 +4,7 @@
 ;; Author: J.D. Smith
 ;; Homepage: https://github.com/jdtsmith/comint-fold
 ;; Package-Requires: ((emacs "27.1") (compat "29.1.4.3"))
-;; Version: 0.0.2
+;; Version: 0.0.3
 ;; Keywords: convenience
 ;; Prefix: comint-fold
 ;; Separator: -
