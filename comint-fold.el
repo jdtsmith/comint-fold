@@ -160,7 +160,7 @@ configuring comint-fold in specific mode hooks, if necessary."
 ;;;###autoload
 (define-minor-mode comint-fold-mode
   "Fold input/output in comint modes."
-  :global nil
+  :global t
   :keymap comint-fold-mode-map
   :group 'comint-fold
   (when comint-fold-mode (comint-fold-setup)))
